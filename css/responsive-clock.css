@@ -4,6 +4,8 @@
   .flipTimebox .flip-clock-wrapper ul {
     height: 50px;
     line-height: 50px;
+    display: inline-block;
+    white-space: nowrap;
   }
   .flipTimebox .flip-clock-wrapper ul li {
     line-height: 50px;
@@ -51,6 +53,8 @@
 @media screen and (max-width: 568px) {
   .flipTimebox .flip-clock-wrapper ul {
     margin: 2px;
+    display: inline-block;
+    white-space: nowrap;
   }
   .flipTimebox .flip-clock-divider {
     width: 5px;
@@ -179,8 +183,79 @@
   }
 }
 
+.flipTimebox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
 .flip-clock-wrapper {
-  margin: 4em !important;
+  margin: 4em auto !important;
+  transform-origin: center center;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.flip-clock-wrapper * {
+  white-space: nowrap;
+}
+
+.flip-clock-wrapper ul,
+.flip-clock-wrapper li,
+.flip-clock-divider {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  vertical-align: top;
+  float: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .flipTimebox {
+    transform: scale(0.85);
+    transform-origin: center center;
+    justify-content: center;
+  }
+  .flip-clock-wrapper {
+    margin: 2em auto !important;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .flipTimebox {
+    transform: scale(0.7);
+    transform-origin: center center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .flipTimebox {
+    transform: scale(0.6);
+    transform-origin: center center;
+    justify-content: center;
+  }
+  .flip-clock-wrapper {
+    margin: 1.5em auto !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .flipTimebox {
+    transform: scale(0.5);
+    transform-origin: center center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .flipTimebox {
+    transform: scale(0.45);
+    transform-origin: center center;
+    justify-content: center;
+  }
 }
 
 .flip-clock-divider .flip-clock-label {
