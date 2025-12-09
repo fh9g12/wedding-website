@@ -86,6 +86,8 @@
   }
   .flipTimebox .flip-clock-divider .flip-clock-label {
     font-size: 1em;
+    top: auto !important;
+    bottom: -0.9em;
   }
   .flipTimebox .flip-clock-divider.days .flip-clock-label {
     right: -33px;
@@ -190,6 +192,7 @@
   width: 100%;
   white-space: nowrap;
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .flip-clock-wrapper {
@@ -197,6 +200,7 @@
   transform-origin: center center;
   white-space: nowrap;
   display: inline-block;
+  padding-top: 1.6em;
 }
 
 .flip-clock-wrapper * {
@@ -210,51 +214,61 @@
   white-space: nowrap !important;
   vertical-align: top;
   float: none !important;
+  position: relative;
 }
 
 @media screen and (max-width: 768px) {
   .flipTimebox {
     transform: scale(0.85);
-    transform-origin: center center;
+    transform-origin: center top;
     justify-content: center;
   }
   .flip-clock-wrapper {
-    margin: 2em auto !important;
+    margin: 1.5em auto 2em auto !important;
   }
 }
 
 @media screen and (max-width: 568px) {
   .flipTimebox {
     transform: scale(0.7);
-    transform-origin: center center;
+    transform-origin: center top;
     justify-content: center;
+  }
+  .flip-clock-wrapper {
+    margin: 1em auto 1.5em auto !important;
   }
 }
 
 @media screen and (max-width: 480px) {
   .flipTimebox {
     transform: scale(0.6);
-    transform-origin: center center;
+    transform-origin: center top;
     justify-content: center;
   }
   .flip-clock-wrapper {
-    margin: 1.5em auto !important;
+    margin: 0.75em auto 1em auto !important;
   }
 }
 
 @media screen and (max-width: 375px) {
   .flipTimebox {
     transform: scale(0.5);
-    transform-origin: center center;
+    transform-origin: center top;
     justify-content: center;
+  }
+  .flip-clock-wrapper {
+    margin: 0.5em auto 0.75em auto !important;
   }
 }
 
 @media screen and (max-width: 320px) {
   .flipTimebox {
     transform: scale(0.45);
-    transform-origin: center center;
+    transform-origin: center top;
     justify-content: center;
+  }
+  .flip-clock-wrapper {
+    margin: 0.25em auto 0.5em auto !important;
   }
 }
 
@@ -262,5 +276,210 @@
   color: white !important;
   font-size: 14px !important;
   font-weight: bold !important;
-  font-family: Sofia Sans Condensed !important; 
+  font-family: Sofia Sans Condensed !important;
+  position: absolute;
+  top: -1.2em;
+  bottom: auto;
+  line-height: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Countdown styling from example site (circular, pulsing) */
+.countdown-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.simply-countdown {
+  margin: 0;
+}
+
+.simply-countdown > .simply-section {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.55);
+  margin: 0 3px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.simply-countdown > .simply-section > div {
+  display: table-cell;
+  vertical-align: middle;
+  height: 80px;
+  width: 80px;
+}
+
+.simply-countdown > .simply-section .simply-amount,
+.simply-countdown > .simply-section .simply-word {
+  display: block;
+  color: white;
+}
+
+.simply-countdown > .simply-section .simply-amount {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.simply-countdown > .simply-section .simply-word {
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+@media screen and (max-width: 480px) {
+  .simply-countdown > .simply-section {
+    width: 70px;
+    height: 70px;
+  }
+  .simply-countdown > .simply-section > div {
+    height: 70px;
+    width: 70px;
+  }
+  .simply-countdown > .simply-section .simply-amount {
+    font-size: 22px;
+  }
+  .simply-countdown > .simply-section .simply-word {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .simply-countdown > .simply-section {
+    width: 64px;
+    height: 64px;
+  }
+  .simply-countdown > .simply-section > div {
+    height: 64px;
+    width: 64px;
+  }
+  .simply-countdown > .simply-section .simply-amount {
+    font-size: 20px;
+  }
+  .simply-countdown > .simply-section .simply-word {
+    font-size: 9px;
+  }
+}
+
+/* Extra tightening for small widths to prevent overflow */
+@media screen and (max-width: 640px) {
+  .countdown-wrapper {
+    padding: 0.2em 0 0.05em;
+    transform: scale(0.9);
+    transform-origin: top center;
+    margin: 0;
+  }
+  .simply-countdown > .simply-section {
+    width: 68px;
+    height: 68px;
+    margin: 0 2px;
+  }
+  .simply-countdown > .simply-section > div {
+    height: 68px;
+    width: 68px;
+  }
+  .simply-countdown > .simply-section .simply-amount {
+    font-size: 21px;
+  }
+  .simply-countdown > .simply-section .simply-word {
+    font-size: 10px;
+  }
+  #fh5co-header .btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .countdown-wrapper {
+    transform: scale(0.82);
+    margin: 0;
+  }
+  #fh5co-header .btn {
+    padding: 5px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Tighten gap between countdown and CTA in hero */
+#fh5co-header .countdown-wrapper + p {
+    margin-top: 0.15em;
+    margin-bottom: 0.15em;
+    padding: 0;
+}
+
+/* Remove default margins around the hero's heading, countdown, and CTA to eliminate gaps */
+#fh5co-header h1 {
+  margin-top: 0;
+  margin-bottom: 0.12em;
+  line-height: 1.05;
+}
+#fh5co-header h2 {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+#fh5co-header .countdown-wrapper {
+  margin-top: 0.0em;
+  margin-bottom:  0.0em;
+}
+
+#fh5co-header .simply-countdown {
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+#fh5co-header p {
+  margin: 0.25em;
+  padding: 0.25em;
+}
+
+@media screen and (max-width: 640px) {
+  #fh5co-header .countdown-wrapper + p {
+    margin-top: -0.05em;
+    margin-bottom: 0.1em;
+    padding: 0;
+  }
+
+  #fh5co-header .simply-countdown {
+    padding: 0.25em;
+    margin: 0.25em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #fh5co-header .countdown-wrapper + p {
+    margin-top: -0.05em;
+    margin-bottom: 0.08em;
+    padding: 0;
+  }
+
+  #fh5co-header .simply-countdown {
+    padding: 0;
+    margin: 0;
+  }
 }

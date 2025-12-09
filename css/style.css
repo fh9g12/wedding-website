@@ -113,10 +113,10 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 5px 10px;
   color: #fff;
 }
-@media screen and (max-width: 768px) {
-  .fh5co-nav .menu-1, .fh5co-nav .menu-2 {
-    display: none;
-  }
+/* Always hide menus - use hamburger exclusively */
+.fh5co-nav .menu-1,
+.fh5co-nav .menu-2 {
+  display: none !important;
 }
 .fh5co-nav ul {
   padding: 0;
@@ -364,11 +364,13 @@ h1, h2, h3, h4, h5, h6, figure {
   height: 900px;
   display: table;
   width: 100%;
+  vertical-align: top;
 }
 @media screen and (max-width: 768px) {
   .fh5co-cover .display-t,
   .fh5co-cover .display-tc {
     height: 600px;
+    vertical-align: top;
   }
 }
 .fh5co-cover.fh5co-cover-sm {
@@ -869,21 +871,21 @@ form label {
 #fh5co-counter .display-tc,
 .fh5co-cover .display-tc {
   display: table-cell !important;
-  vertical-align: middle;
-  padding-top: 130px;
+  vertical-align: top;
+  padding-top: 100px;
 }
 @media screen and (max-width: 768px) {
   #fh5co-header .display-tc,
   #fh5co-counter .display-tc,
   .fh5co-cover .display-tc {
-    padding-top: 80px;
+    padding-top: 70px;
   }
 }
 @media screen and (max-width: 480px) {
   #fh5co-header .display-tc,
   #fh5co-counter .display-tc,
   .fh5co-cover .display-tc {
-    padding-top: 60px;
+    padding-top: 50px;
   }
 }
 #fh5co-header .display-tc h1, #fh5co-header .display-tc h2,
@@ -1666,7 +1668,6 @@ form label {
   padding: 6px 0 0 0;
   display: block;
   margin: 0 auto;
-  display: none;
   height: 44px;
   width: 44px;
   z-index: 2001;

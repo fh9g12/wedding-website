@@ -21,7 +21,7 @@
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
     <!-- Website to visit when clicked in fb or WhatsApp-->
-    <meta property="og:url" content="https://we.shyamjos.com">
+    <meta property="og:url" content="https://wedding.fintanhealy.co.uk/">
 	<meta property="og:type" content="website"/>
     <meta property="og:image:type" content="image/jpeg">
 
@@ -66,13 +66,11 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="row">
-	
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
 						<li class="active"><a href="index.html">Home</a></li>
 						<li class="active"><a href="#fh5co-event">Events</a></li>
 						<li class="active"><a href="#fh5co-gallery">Gallery</a></li>
-						<li class="active"><a href="#fh5co-services">Highlights</a></li>
 					</ul>
 				</div>
 			</div>
@@ -87,13 +85,13 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>Fintan &amp;</h1>
-							<h1>Florence</h1>
-							<br>
+							<h1>Fintan &amp;Florence</h1>
+							<!-- <br> -->
+							<h2>We are getting married</h2>
 							<h2>9th of July 2027</h2>
 							<h2>"Organised fun, scheduled from 2pm sharp"</h2>
-							<div class="flipTimebox">
-								<div class="clock clock-fix"></div>
+							<div class="countdown-wrapper">
+								<div id="wedding-countdown" class="simply-countdown simply-countdown-inline"></div>
 							</div>
 							<p><a href="#fh5co-event" class="btn btn-default btn-sm">Save our date</a></p>
 						</div>
@@ -207,6 +205,28 @@
 
 	<!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
 	<script src="js/simplyCountdown.js"></script>
+	<script>
+	  (function() {
+	    const target = moment.tz('2027-07-09 14:00', 'Asia/Kolkata');
+	    simplyCountdown('#wedding-countdown', {
+	      year: target.year(),
+	      month: target.month() + 1,
+	      day: target.date(),
+	      hours: target.hours(),
+	      minutes: target.minutes(),
+	      seconds: target.seconds(),
+	      enableUtc: true,
+	      words: {
+	        days: 'Days',
+	        hours: 'Hours',
+	        minutes: 'Minutes',
+	        seconds: 'Seconds',
+	        pluralLetter: ''
+	      },
+	      plural: false
+	    });
+	  })();
+	</script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<center>View Source Code on <a href="https://github.com/shyamjos/wedding-website">GitHub <img src="images/github-logo.png"> </a> </center>
