@@ -1150,6 +1150,16 @@ form label {
   }
 }
 .fh5co-heading p {
+
+/* Keep map embeds contained and fluid inside event cards */
+.event-map {
+  margin-top: 15px;
+}
+
+.event-map iframe {
+  width: 100%;
+  min-height: 240px;
+}
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
