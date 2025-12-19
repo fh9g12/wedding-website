@@ -4,7 +4,7 @@ To set the countdown date see below section in `js/clock.js`
 
 ````
   // Target future date/24 hour time/Timezone
-  let targetDate = moment.tz("2027-07-09 12:00", "Asia/Kolkata");
+  let targetDate = moment.tz("2027-07-09 14:00", "Europe/London");
 ````
 
 
