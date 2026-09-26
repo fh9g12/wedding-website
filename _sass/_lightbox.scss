@@ -1,0 +1,39 @@
+// Overlay for the gallery lightbox (see assets/js/lightbox.js).
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.85);
+
+  &.is-open {
+    display: flex;
+  }
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  line-height: 1;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+// Prevent the page behind the overlay from scrolling while it's open.
+body.lightbox-open {
+  overflow: hidden;
+}

@@ -1,0 +1,52 @@
+{% if site.navigation_header %}
+<nav class="nav  nav--header">
+  <ul class="list  list--nav">
+    {% for item in site.navigation_header %}
+
+      {% if item.url contains '://' %}
+        {% assign url = item.url %}
+      {% else %}
+        {% assign url = item.url | relative_url %}
+      {% endif %}
+
+      <li class="item  item--nav{% if item.url == page.url %}  item--current{% endif %}">
+        <a href="{{ url }}">{{ item.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <button class="button  button--nav" aria-label="Menu toggle" aria-expanded="false">
+    {% include icon.html id="nav" title="Menu" %}
+  </button>
+</nav>
+{% else %}
+  {% include nav-default.html %}
+{% endif %}
+
+<script type="text/javascript">
+  // Overridden from the theme's own nav-header.html: the original toggles
+  // a negative margin-bottom via a --listHeight custom property, which only
+  // hides the (in-flow) list by shrinking it to nothing - opening it grows
+  // the header's own height and pushes the rest of the page down. We want
+  // the open menu to float over the page instead, so _sass/_hero.scss
+  // positions .list--nav absolutely and shows/hides it off a plain
+  // ".is-open" class, toggled here.
+  (function () {
+    var navList = document.querySelector('.header .list--nav');
+    var button = document.querySelector('.header .button--nav');
+    if (!navList || !button) {
+      return;
+    }
+
+    button.addEventListener('click', function () {
+      var isOpen = navList.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    window.addEventListener('resize', function () {
+      if (document.body.clientWidth >= 640) {
+        navList.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>

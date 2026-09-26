@@ -1,0 +1,84 @@
+<div class="countdown-wrapper">
+  <div id="wedding-countdown" class="simply-countdown simply-countdown-inline"></div>
+</div>
+
+<style>
+  .countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1.5em 0;
+  }
+  .simply-countdown {
+    margin: 0;
+  }
+  .simply-countdown > .simply-section {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.55);
+    margin: 0 3px;
+    border-radius: 50%;
+    position: relative;
+    animation: countdown-pulse 1s ease infinite;
+  }
+  @keyframes countdown-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  .simply-countdown > .simply-section > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height: 80px;
+    width: 80px;
+  }
+  .simply-countdown > .simply-section .simply-amount,
+  .simply-countdown > .simply-section .simply-word {
+    display: block;
+    color: white;
+  }
+  .simply-countdown > .simply-section .simply-amount {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .simply-countdown > .simply-section .simply-word {
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  @media screen and (max-width: 480px) {
+    .simply-countdown > .simply-section { width: 64px; height: 64px; }
+    .simply-countdown > .simply-section > div { height: 64px; width: 64px; }
+    .simply-countdown > .simply-section .simply-amount { font-size: 20px; }
+    .simply-countdown > .simply-section .simply-word { font-size: 9px; }
+  }
+</style>
+
+<script src="https://momentjs.com/downloads/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data-2012-2022.min.js"></script>
+<script src="{{ '/assets/js/simplyCountdown.js' | relative_url }}"></script>
+<script>
+  (function () {
+    var target = moment.tz("{{ site.wedding.date }}", "{{ site.wedding.timezone }}");
+    simplyCountdown('#wedding-countdown', {
+      year: target.year(),
+      month: target.month() + 1,
+      day: target.date(),
+      hours: target.hours(),
+      minutes: target.minutes(),
+      seconds: target.seconds(),
+      enableUtc: true,
+      words: {
+        days: 'Days',
+        hours: 'Hours',
+        minutes: 'Minutes',
+        seconds: 'Seconds',
+        pluralLetter: ''
+      },
+      plural: false
+    });
+  })();
+</script>

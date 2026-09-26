@@ -1,0 +1,125 @@
+// Our own overrides, loaded after the theme (see assets/styles.scss) so
+// these plain CSS rules simply win in the normal cascade - much more
+// reliable than trying to override the theme's Sass variables, since Sass
+// resolves the theme's own @import "settings" from inside the gem's own
+// folder and never sees a same-named file in our _sass/ at all.
+//
+// Colours come from _palette.scss - edit the values there, not here.
+@import "palette";
+@import "timeline";
+@import "lightbox";
+
+// Site-wide typeface. The reference site (archieandanna.com) renders every
+// weight at 300 (headings AND body text) - the theme's own default is 400
+// for body copy and 700 for headings, so both need the explicit override.
+// Our Google Fonts import only loads weights 300/400, so anything asking
+// for 700 gets "fake bolded" by the browser, which looks visibly heavier/
+// different from genuine Josefin Sans at 300.
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,300;1,400");
+
+body {
+  background: $page-background;
+  color: $page-text;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
+}
+
+.typeset h1, .typeset h2, .typeset h3, .typeset h4, .typeset h5, .typeset h6 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
+  color: $heading-text;
+}
+
+// The reference site's root font-size is smaller than this theme's stock
+// sizes at every breakpoint (measured 14.4px vs our stock 17px around
+// 1024-1600px wide) - reproducing the same breakpoints as the theme's own
+// rootsize() mixin (sassline-base/_variables.scss), scaled down to match.
+html {
+  font-size: 63.75%; // 10.2px
+}
+@media screen and (min-width: 40em) { // 640px
+  html { font-size: 74.4%; } // 11.9px
+}
+@media screen and (min-width: 50em) { // 800px
+  html { font-size: 79.4%; } // 12.7px
+}
+@media screen and (min-width: 64em) { // 1024px
+  html { font-size: 90%; } // 14.4px
+}
+@media screen and (min-width: 100em) { // 1600px
+  html { font-size: 100.6%; } // 16.1px
+}
+
+// The theme's header/footer layout is built for a logo (left) + nav (right)
+// via justify-content: space-between. We have no logo, so the nav - the only
+// real child - gets pushed to the far left instead of appearing centred.
+.header .container {
+  justify-content: center;
+}
+
+// Links (including the top nav) and buttons.
+//
+// The theme's own in-content link style (a thin underline made from a
+// background-image gradient, plus a text-shadow "halo" around each letter
+// so the line doesn't clash with the glyphs) hardcodes that halo to the
+// theme's stock white background. On any other page background - like a
+// dark palette - the white halo shows up as ugly pale slashes through the
+// text. Rather than patch that halo colour, we drop the old gradient/
+// text-shadow hack entirely and use standard text-decoration properties
+// instead, which render correctly against any background automatically.
+a {
+  color: $accent;
+  text-decoration: none;
+
+  &:hover, &:active, &:focus {
+    color: $accent-hover;
+  }
+}
+
+// :not(.button) - the "Schedule »" style call-to-action links are also <a>
+// tags inside a paragraph, but they should look like buttons, not underlined
+// text links.
+.typeset p a:not(.button), .typeset li a:not(.button) {
+  // Cancel out the theme's own gradient-underline + white text-shadow halo
+  // (see comment above) - without this, both the old and new underline
+  // styles render stacked on top of each other.
+  background-image: none;
+  text-shadow: none;
+
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  transition: text-decoration-thickness .15s, color .15s;
+
+  &:hover, &:active, &:focus {
+    background-image: none;
+    text-decoration-thickness: 2px;
+  }
+}
+
+input[type="submit"],
+button,
+.button {
+  background: $accent;
+}
+
+// Banner ("feature") width options - set per page via `feature_width` in
+// its front matter: "full" (default, edge-to-edge - needs no CSS here),
+// "text" (uses .feature--text below, matching the text content's width),
+// or any literal CSS width (e.g. "800px", "60%"), which the include applies
+// as an inline style. margin auto centres it whenever it's narrower than
+// full width; it's a no-op for the default full-width case.
+.feature {
+  margin-left: auto;
+  margin-right: auto;
+
+  &--text {
+    max-width: 45rem;
+  }
+}
+
+// Imported last so its rules (hero text sizing, the mobile menu toggle,
+// and the .header .container mobile override) reliably win the cascade
+// against equal-specificity rules earlier in this file.
+@import "hero";

@@ -1,0 +1,12 @@
+<ol class="timeline">
+  {% for item in site.data.schedule %}
+  <li class="timeline-item">
+    <div class="timeline-marker">{% if item.icon %}<span class="timeline-icon">{{ item.icon }}</span>{% endif %}</div>
+    <div class="timeline-content">
+      <div class="timeline-time">{{ item.time }}</div>
+      <div class="timeline-title">{{ item.title }}</div>
+      {% if item.subtext %}<div class="timeline-subtext">{{ item.subtext }}</div>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>

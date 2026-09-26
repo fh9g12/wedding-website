@@ -1,0 +1,102 @@
+// Vertical timeline used on the Schedule page (see _includes/timeline.html
+// and _data/schedule.yml). Centred as a block on the page; the line and
+// markers stay left-aligned within that centred block.
+.timeline {
+  position: relative;
+  max-width: 30rem;
+  margin: 2rem auto;
+  padding: 0;
+  list-style: none;
+
+  // The vertical line, drawn behind the markers.
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 1.5rem;
+    width: 2px;
+    background: rgba($heading-text, 0.2);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  text-align: left;
+  padding-bottom: 2rem;
+  margin-left: 0; // the theme adds a left margin to all <li>s by default
+
+  // The theme numbers every <ol> item via a counter on ::before (separately
+  // from list-style, which we've already turned off on .timeline). That
+  // theme rule is ".typeset ol li::before", which is more specific than
+  // ".timeline-item::before" on its own, so it wins the cascade even though
+  // ours loads later - !important is the pragmatic way to reliably beat a
+  // third-party selector like this without copying its exact specificity.
+  &::before {
+    content: none !important;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.timeline-marker {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: $accent;
+  // Gives the marker a ring in the page's own background colour, so the
+  // vertical line behind it looks like it passes under the circle.
+  box-shadow: 0 0 0 4px $page-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.timeline-content {
+  padding-top: 0.5rem;
+}
+
+.timeline-time {
+  color: $accent;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.timeline-title {
+  color: $heading-text;
+  font-size: 1.3rem;
+}
+
+.timeline-subtext {
+  color: $page-text;
+  opacity: 0.8;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+@media screen and (max-width: 30em) {
+  .timeline {
+    max-width: 100%;
+  }
+  .timeline-marker {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  .timeline::before {
+    left: 1.2rem;
+  }
+}

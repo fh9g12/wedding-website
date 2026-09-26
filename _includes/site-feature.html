@@ -1,0 +1,45 @@
+{% assign feature_text = page.feature_text %}
+{% assign feature_image = page.feature_image %}
+{% assign feature_position = page.feature_position | default: "left" %}
+{% assign feature_width = page.feature_width | default: "full" %}
+{% assign feature_height = page.feature_height %}
+{% if page.collectionpage %}
+  {% assign collectiondata = site.collections | where: "label", page.collectionpage | first %}
+  {% assign feature_text = collectiondata.feature_text %}
+  {% assign feature_image = collectiondata.feature_image %}
+  {% assign feature_position = collectiondata.feature_position | default: "left" %}
+  {% assign feature_width = collectiondata.feature_width | default: "full" %}
+  {% assign feature_height = collectiondata.feature_height %}
+{% endif %}
+
+{% comment %}
+  feature_position defaults to "left" (not "center") for the horizontal
+  anchor: as the viewport narrows, background-size: cover crops the image
+  horizontally, and "left" keeps that crop anchored to the image's left
+  edge (cropping away the right side) instead of cropping evenly from both
+  sides. Override per page as e.g. "left 40%" (horizontal vertical) to
+  adjust the vertical crop for where faces sit in that particular photo.
+
+  feature_width (page front matter) controls how wide the banner is:
+    - "full" (default) - edge-to-edge, the original behaviour
+    - "text"            - matches the width of the page's text content
+    - any CSS width, e.g. "800px" or "60%" - used directly
+
+  feature_height controls how tall it is - any CSS height, e.g. "50vh" or
+  "400px". Left unset, the theme's own default (35vh) applies.
+{% endcomment %}
+{% assign feature_class = "feature" %}
+{% assign feature_width_style = "" %}
+{% if feature_width == "text" %}
+  {% assign feature_class = feature_class | append: " feature--text" %}
+{% elsif feature_width != "full" %}
+  {% assign feature_width_style = " max-width: " | append: feature_width | append: "; margin-left: auto; margin-right: auto;" %}
+{% endif %}
+
+{% if feature_text or feature_image %}
+  <div class="{{ feature_class }}"{% if feature_image or feature_width_style != "" %} style="{% if feature_image %}background-image: url({{ feature_image }}); background-position: {{ feature_position }};{% endif %}{{ feature_width_style }}"{% endif %}>
+    <div class="container  typeset"{% if feature_height %} style="min-height: {{ feature_height }};"{% endif %}>
+      {{ feature_text | markdownify }}
+    </div>
+  </div>
+{% endif %}

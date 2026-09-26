@@ -1,10 +1,14 @@
-Source code for our wedding website 👫, Based on HTML theme https://freehtml5.co/wedding-free-html5-bootstrap-template-for-wedding-websites
+Source code for our wedding website 👫, built with [Jekyll](https://jekyllrb.com/) and the [Alembic](https://github.com/daviddarnes/alembic) theme.
 
-To set the countdown date see below section in `js/clock.js`
+Each page (Schedule, Venue, Accommodation, FAQ, RSVP, Gallery) is a plain markdown file in the repo root - edit those directly to change content.
 
-````
-  // Target future date/24 hour time/Timezone
-  let targetDate = moment.tz("2027-07-09 14:00", "Europe/London");
-````
+To change the wedding date/time or countdown timezone, edit the `wedding:` section in `_config.yml`.
 
+## Running locally
 
+```
+bundle install
+bundle exec jekyll serve
+```
+
+Then open http://localhost:4000 in your browser. Pushing to `main` builds and deploys the site via the GitHub Actions workflow in `.github/workflows/jekyll.yml`.

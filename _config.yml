@@ -1,0 +1,82 @@
+# Theme
+theme: alembic-jekyll-theme
+
+# File excludes
+exclude:
+- README.md
+- Gemfile
+- Gemfile.lock
+
+# Plugins (also runtime dependencies of the theme, listed explicitly so
+# Jekyll activates them and uses CommonMark for rendering)
+plugins:
+- jekyll-sitemap
+- jekyll-mentions
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-redirect-from
+- jekyll-feed
+- jekyll-commonmark
+- jekyll-include-cache
+- jemoji
+- fastimage
+
+# Site settings
+url: "https://wedding.fintanhealy.co.uk"
+baseurl: ""
+title: "Fintan & Florence"
+image: "/assets/images/og.jpg"
+description: "We are getting married on the 9th of July 2027 and we would like you to be a part of it."
+permalink: pretty
+
+# The theme registers an offline-caching service worker by default, which
+# aggressively caches pages/images in the browser - during development this
+# means edits can appear to "not take effect" until the old service worker
+# is cleared. We don't need offline support for a simple site, so it's off.
+service_worker: false
+
+# Wedding details - edit these and the countdown/date mentions update everywhere
+wedding:
+  date: "2027-07-09 14:00"
+  timezone: "Europe/London"
+  venue_name: "Combe Lodge"
+  venue_url: "https://www.coombelodge.co.uk/"
+
+# Header nav
+navigation_header:
+- title: Home
+  url: /
+- title: Schedule
+  url: /schedule/
+- title: Venue
+  url: /venue/
+- title: Accommodation
+  url: /accommodation/
+- title: FAQ
+  url: /faq/
+- title: RSVP
+  url: /rsvp/
+- title: Gallery
+  url: /gallery/
+
+# Footer nav
+navigation_footer:
+- title: Back to top
+  url: "#top"
+
+# Default layout for every page
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page
+
+# Silence Sass deprecation warnings that come from the alembic-jekyll-theme
+# gem's own (outdated) stylesheets, not from anything in this repo.
+# quiet_deps only silences warnings from files loaded as dependencies, not
+# entry-point stylesheets like assets/styles.scss, so the @import
+# deprecation needs to be silenced explicitly too.
+sass:
+  quiet_deps: true
+  silence_deprecations: [import, global-builtin, slash-div]

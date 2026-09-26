@@ -1,0 +1,123 @@
+// Homepage hero banner text (see index.md's feature_text). clamp() scales
+// the font size smoothly between a minimum (phones) and maximum (desktop)
+// based on viewport width, instead of the old fixed px size that overflowed
+// and overlapped on narrow screens.
+// Scoped as ".feature .hero-title" (two classes) rather than just
+// ".hero-title" (one class) - the site-wide ".typeset h1, h2, ..." rule in
+// this same file is a class + element selector, which beats a lone class
+// regardless of source order, and was silently overriding this font-family
+// back to Josefin Sans.
+.feature .hero-title {
+  color: #eeeee4;
+  font-family: Amsterdam, cursive;
+  font-size: clamp(2.2rem, 11vw, 4.5rem);
+  // Amsterdam's loops/flourishes are taller than a normal font's - 1.15
+  // was tight enough that when the title wraps to two lines, the "F"s
+  // from each line visually collided.
+  line-height: 1.5;
+}
+
+// On top of the fluid clamp() above, drop to a firmly smaller fixed size on
+// narrow phones - the same fix used on the original site (fixed sizes at
+// specific breakpoints) - so the title is less likely to wrap to two lines
+// at all on the narrowest screens, and reads clearly when it does.
+@media screen and (max-width: 480px) {
+  .feature .hero-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .feature .hero-title {
+    font-size: 1.7rem;
+  }
+}
+
+.feature .hero-subtitle {
+  color: #eeeee4;
+  font-family: Engagement, cursive;
+  font-size: clamp(1.1rem, 5vw, 1.9rem);
+
+  &--first {
+    margin-top: 2rem;
+  }
+}
+
+// Mobile menu toggle (the hamburger button).
+//
+// It shares the .button class with our call-to-action links (see
+// _custom.scss), which was giving it an unwanted solid accent-colour
+// background block; its icon also uses fill="currentColor" in the markup,
+// which was picking up the theme's own stock green ($linkColour) since we'd
+// never set `color` on this element specifically.
+.button--nav {
+  background: none;
+  color: $accent;
+
+  &:hover, &:focus {
+    color: $accent-hover;
+  }
+}
+
+// On desktop the whole nav-links row is centred (see .header .container in
+// _custom.scss). On mobile, only the toggle button is visible - centering
+// *it* leaves it floating in the middle of the banner, disconnected from
+// where a menu button is expected, so pin it to the right-hand corner
+// instead, below the theme's own breakpoint for switching to the mobile menu.
+@media screen and (max-width: 39.9375em) { // 639px
+  .header .container {
+    justify-content: flex-end;
+  }
+
+  // The theme opens the mobile menu by removing a negative margin-bottom,
+  // which - because the list is a normal in-flow element - grows the
+  // header's own height and pushes the banner/page content down. Turning
+  // the list into an absolutely-positioned dropdown, shown/hidden via a
+  // plain ".is-open" class (toggled in our override of nav-header.html)
+  // keeps it out of the document flow entirely, so opening it overlays the
+  // page instead of shifting it.
+  .nav--header {
+    position: relative;
+  }
+
+  .header .nav {
+    // The theme relies on overflow: hidden to visually clip the collapsed
+    // list; an absolutely-positioned dropdown needs to be free to extend
+    // below the header instead of being clipped by it.
+    overflow: visible;
+  }
+
+  .list--nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 20;
+    width: 14rem;
+    max-width: calc(100vw - 2rem);
+    margin: 0 !important;
+    padding: 0.5rem 0;
+    background: $page-background;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.35);
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.2s ease, opacity 0.15s ease;
+
+    &.is-open {
+      max-height: 30rem; // generous cap, well above the list's real height
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .item--nav {
+    display: block;
+    padding: 0.6rem 1.25rem;
+  }
+}
+
+// Banner height: set via a page's `feature_height` front matter as any CSS
+// height value (e.g. "50vh", "400px"). Left unset, the theme's own default
+// (35vh) applies - see _includes/site-feature.html.
