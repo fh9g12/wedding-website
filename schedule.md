@@ -11,7 +11,3 @@ feature_width: "text"
 <p style='text-align: center'>
 See the <a href="../faq/">FAQs</a> for the dress code and other details.
 </p>
-
-<p style='text-align: right'>
-{% include button.html text="<b>Venue »</b>" link="/venue/" %}
-</p>
