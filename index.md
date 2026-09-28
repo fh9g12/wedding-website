@@ -6,7 +6,7 @@ image: "/assets/images/og.jpg"
 feature_image: "/assets/images/p2.jpg"
 feature_position: "left 60%"
 feature_height: "40vh"
-feature_width: "text"
+feature_width: "75vh"
 feature_text: |
   <h1 class="hero-title">Fintan &amp; Florence</h1>
   <p class="hero-subtitle hero-subtitle--first">We are getting married &middot; 9th of July 2027</p>
