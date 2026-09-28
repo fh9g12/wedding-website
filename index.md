@@ -4,11 +4,12 @@ layout: home
 description: We are getting married on the 9th of July 2027 and we would like you to be a part of it.
 image: "/assets/images/og.jpg"
 feature_image: "/assets/images/p2.jpg"
-feature_position: "left 60%"
-feature_height: "40vh"
-feature_width: "75vh"
+feature_position: "left 30%"
+feature_height: "50vh"
+feature_width: "70vh"
 feature_text: |
-  <h1 class="hero-title">Fintan &amp; Florence</h1>
+  <h1 class="hero-title">Fintan &amp;</h1>
+  <h1 class="hero-title">Florence</h1>
   <p class="hero-subtitle hero-subtitle--first">We are getting married &middot; 9th of July 2027</p>
 ---
 
