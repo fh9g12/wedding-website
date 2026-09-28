@@ -2,7 +2,7 @@
 title: Accommodation
 image: "/assets/images/og.jpg"
 feature_image: "/assets/images/p5.jpg"
-feature_position: "left 20%"
+feature_position: "left 40%"
 feature_width: "text"
 ---
 

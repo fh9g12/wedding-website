@@ -1,8 +1,9 @@
 ---
 title: FAQs
 image: "/assets/images/og.jpg"
-feature_image: "/assets/images/p2.jpg"
+feature_image: "/assets/images/p13.jpg"
 feature_width: "text"
+feature_position: "left 20%"
 ---
 
 ### Where is the venue?

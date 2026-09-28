@@ -10,7 +10,7 @@
 .feature .hero-title {
   color: #eeeee4;
   font-family: Amsterdam, cursive;
-  font-size: clamp(2.2rem, 11vw, 4.5rem);
+  font-size: clamp(3.5rem, 11vw, 3.5rem);
   // Amsterdam's loops/flourishes are taller than a normal font's - 1.15
   // was tight enough that when the title wraps to two lines, the "F"s
   // from each line visually collided.
@@ -21,17 +21,17 @@
 // narrow phones - the same fix used on the original site (fixed sizes at
 // specific breakpoints) - so the title is less likely to wrap to two lines
 // at all on the narrowest screens, and reads clearly when it does.
-@media screen and (max-width: 480px) {
-  .feature .hero-title {
-    font-size: 2rem;
-  }
-}
+// @media screen and (max-width: 480px) {
+//   .feature .hero-title {
+//     font-size: 1.2.5rem;
+//   }
+// }
 
-@media screen and (max-width: 360px) {
-  .feature .hero-title {
-    font-size: 1.7rem;
-  }
-}
+// @media screen and (max-width: 360px) {
+//   .feature .hero-title {
+//     font-size: 1.25rem;
+//   }
+// }
 
 .feature .hero-subtitle {
   color: #eeeee4;

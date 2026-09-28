@@ -1,9 +1,10 @@
 ---
 title: RSVP
 image: "/assets/images/og.jpg"
-feature_image: "/assets/images/p1.jpg"
-feature_position: "left 42%"
+feature_image: "/assets/images/p6.jpg"
+feature_position: "left 50%"
 feature_width: "text"
+feature_height: "45vh"
 ---
 
 <p style='text-align: center'>
